@@ -1,0 +1,113 @@
+<!DOCTYPE html>  
+<html>  
+<head lang="en">  
+    <meta charset="UTF-8">  
+    <title>青柠打卡</title>  
+</head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
+<style type="text/css">
+	form{
+		margin: 0px;
+	}
+</style>
+<body>
+<br><br>
+<p id="demo" style="color: blue;">不在校点击下面按钮后请同意定位权限，获取后记得替换表单中经纬度</p>
+<center><button  style="color: blue;" onclick="getLocation()">获取居家定位</button></center>
+<script>
+    var x=document.getElementById("demo");
+    function getLocation(){if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+        }else{x.innerHTML="Geolocation is not supported by this browser.";}
+    }
+    function showPosition(position){
+        x.innerHTML="现在的经纬度：" + position.coords.latitude + "," + position.coords.longitude + "<br>如使用该经纬度进行打卡，先替换表单中经纬度，然后请将地址改为具体位置，示例：中国**省**市**区**镇**";
+        }
+</script>
+<br>
+<HR style="border:3 double #987cb9" width="80%" color=#987cb9 SIZE=3>
+<form action="action-addnews.php" method="post">
+    <br><br>
+    <label>姓名：</label>
+        <input type="text" name="name">
+    <br><br>
+    <label>账号UID：</label>
+        <input type="text" name="uid">
+    <br><br>
+    <label>身体状态：</label>
+        <select type="text" name="zhuangtai">
+          <option value="正常" selected="selected">正常</option>
+          <option value="发热（普通感冒）">发热（普通感冒）</option>
+          <option value="发热（未知原因）">发热（未知原因）</option>
+          <option value="疑似（未隔离）">疑似（未隔离）</option>
+          <option value="疑似（被隔离）">疑似（被隔离）</option>
+          <option value="确诊">确诊</option>
+        </select>
+    <br><br>
+    <label>出现症状：</label>
+        <select type="text" name="zhengzhuang">
+          <option value="无" selected="selected">无</option>
+          <option value="发热">发热</option>
+          <option value="乏力">乏力</option>
+          <option value="干咳<">干咳</option>
+          <option value="恶心">恶心</option>
+          <option value="呕吐">呕吐</option>
+          <option value="流涕">流涕</option>
+          <option value="咽痛">咽痛</option>
+        </select>
+    <br><br>
+    <label>密接情况：</label>
+        <select type="text" name="mijie">
+          <option value="全部正常" selected="selected">全部正常</option>
+          <option value="有发热（普通感冒）">有发热（普通感冒）</option>
+          <option value="有发热（未知原因）">有发热（未知原因）</option>
+          <option value="有疑似（未隔离）">有疑似（未隔离）</option>
+          <option value="有疑似（被隔离）">有疑似（被隔离）</option>
+          <option value="有确诊">有确诊</option>
+        </select>
+    <br><br>
+    <label>（默认学校）经纬度：</label>
+        <input type="text" value="30.778022,103.954963" name="jwd">
+    <br><br>
+    <label>（默认学校）地址：</label>
+        <input type="text" value="中国四川省成都市西华大学" name="dizhi">
+    <br><br>
+    <font size="1" style="color: grey;" > 留校勿动以上默认信息，离校打卡请改成你的现在的位置，见顶部</font>
+    <br><br>
+    <label>在校情况：</label>
+        <select type="text" name="zaixiao">
+          <option value="在校" selected="selected">在校</option>
+          <option value="不在校">不在校</option>
+        </select>
+    <br><br>
+    <label>实习情况：</label>
+        <select type="text" name="shixi">
+          <option value="未实习" selected="selected">未实习</option>
+          <option value="实习(四川省成都市)">实习(四川省成都市)</option>
+          <option value="实习(四川其他州市)">实习(四川其他州市)</option>
+          <option value="实习(湖北省)">实习(湖北省)</option>
+          <option value="实习(浙江省)">实习(浙江省)</option>
+          <option value="实习(广东省)">实习(广东省)</option>
+          <option value="实习(河南省)">实习(河南省)</option>
+          <option value="实习(湖南省)">实习(湖南省)</option>
+          <option value="实习(其他省市)">实习(其他省市)</option>
+        </select>
+    <br><br>
+    <label>风险等级：</label>
+        <select type="text" name="fengxian">
+          <option value="低风险区" selected="selected">低风险区</option>
+          <option value="中风险区">中风险区</option>
+          <option value="高风险区">高风险区</option>
+        </select>
+    <br><br>
+    <label>pushplus的Token：</label>
+    <input type="text" name="token">
+    <br><br>
+    <center><input id="btn" style="color: green;" type="submit" value="提交打卡"></center>
+    <br>
+    <font size="1" style="color: red;" > 需要修改打卡信息,直接重新提交即可覆盖</font>
+</form>
+</script> 
+</body>  
+</html>
